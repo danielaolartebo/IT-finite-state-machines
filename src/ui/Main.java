@@ -26,7 +26,7 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Renting Car");
+        primaryStage.setTitle("Finate-state machine");
         primaryStage.show();
     }
 
