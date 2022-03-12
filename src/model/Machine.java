@@ -1,10 +1,23 @@
 package model;
-import java.util.*;
-import data_structures.*;
 
-public class Machine<Q extends Comparable<Q>,S,R> extends GraphList<Q> {
-    private Q startState;
-    private HashSet<S> stimulusState;
-    private HashSet<R> responseState;
-    private HashMap<Q, HashMap<S, Q>> state;
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
+
+public class Machine {
+
+    private String name;
+    public Machine(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

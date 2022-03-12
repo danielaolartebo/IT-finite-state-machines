@@ -1,36 +1,43 @@
 package ui;
 
-import java.io.IOException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
+
 public class Main extends Application {
 
-    @SuppressWarnings("FieldMayBeFinal")
-    FXController fxGUI;
+	private FXController fsmc;
 
-    private static final int COUNT_LIMIT = 1000;
+	public Main() {
+		fsmc = new FXController();
+	}
 
-    public Main() throws IOException {
-        fxGUI = new FXController();
-    }
+	public static void main(String[] args) {
+		launch(args);
+	}
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/initPane.fxml"));
-        fxmlLoader.setController(fxGUI);
-        Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.setTitle("Finate-state machine");
-        primaryStage.show();
-    }
+	@Override
+	public void start( Stage primaryStage) throws Exception {
+		FXMLLoader fxmll = new FXMLLoader(getClass().getResource("GUI/InitPane.fxml"));
+		fxmll.setController(fsmc);
+		Parent root = fxmll.load();
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+		Scene scene = new Scene(root);
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Finite State Machine");
+		primaryStage.show();
+	}
 }
