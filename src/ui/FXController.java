@@ -3,25 +3,88 @@ package ui;
 /**
  *
  * @author Daniela Olarte Borja A00368359
- * @author Gabriel Suarez Baron A0036....
+ * @author Gabriel Suarez Baron A00368589
  *
  */
 
+
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.Alert;
+import model.Machine;
+import model.Properties;
+
+import javax.crypto.Mac;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class FXController {
 
-    public FXController(){
+    private Machine mc;
 
+    public FXController(){
+        mc = new Machine();
     }
+
     @FXML
+    private TextField txtNumEstados;
+
+    @FXML
+    private TextField txtAlfabeto;
+
+    @FXML
+    private RadioButton rbMeely;
+
+    @FXML
+    private ToggleGroup tgTypeMachine;
+
+    @FXML
+    private RadioButton rbMoore;
+
+    @FXML
+    public void onNewMachine(ActionEvent event) {
+        if(parseNumState(txtNumEstados.getText())){
+            mc.addAlphabet(txtAlfabeto.getText());
+            newAlert(1, "Valores correctos");
+        }
+        System.out.println(mc.getProperties().getAlphabet().toString());
+        System.out.println(mc.getProperties().getStates().toString());
+    }
+
+    public boolean parseNumState(String states){
+        try {
+            int numStates = Integer.parseInt(states);
+            mc.addState(numStates);
+            return true;
+        } catch (NumberFormatException e){
+            newAlert(0, "Ingresa un numero en la cantidad de estados");
+            txtNumEstados.clear();
+            return false;
+        }
+    }
+
+    public void newAlert(int type, String message){
+        Alert alert;
+        if(type == 0){
+            alert = new Alert(Alert.AlertType.WARNING);
+        } else {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+        }
+        alert.setHeaderText(null);
+        alert.setTitle("Alert");
+        alert.setContentText(message);
+        alert.show();
+    }
+
+
+
+    /*
+    //Atributos
+        @FXML
     private TextField txtEstados;
     @FXML
     private TextField txtAlfabeto;
@@ -37,10 +100,6 @@ public class FXController {
     private Button btMin;
     @FXML
     private ScrollPane scrollPane1;
-    @FXML
-
-    //Atributos
-
     private ScrollPane minimizeScroll;
     private GridPane gridPanel1;
     private GridPane gridP1;
@@ -74,5 +133,6 @@ public class FXController {
         }
         return true;
     }
+     */
 
 }
