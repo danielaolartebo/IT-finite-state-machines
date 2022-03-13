@@ -21,14 +21,19 @@
 *To run the web app you should follow these steps:*
 
 1️⃣ *Clone or download the repository*
+
 2️⃣ *Open it on your IDE (must have JavaFX installed)*
+
 5️⃣ *Run the project on the IDE*
 
 ## ***Instructions***📓
 
 🔸*Select automata type (Moore or Mealy)*
+
 🔸*Type number of states, example: 1*
+
 🔸*Type input alphabet, example: a,b,c,d,...n*
+
 🔸*Type output alphabet, example: a,b,c,d,...n*
 
 *If Mealy Machine is choosen:*
@@ -38,6 +43,7 @@
 🔻 Type in the acceptance state and the state where is going to, depending on the initial state and stimulus.
 
 🔸*Continue to do partitions*
+
 🔸*Continue to do conexo automata*
 
 ## ***Sources***📎
