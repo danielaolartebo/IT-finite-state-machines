@@ -5,7 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.Machine;
 
+import javax.crypto.Mac;
 import java.io.IOException;
 
 /**
@@ -18,8 +20,6 @@ import java.io.IOException;
 public class Main extends Application {
 
     FXController fxGUI;
-
-    private static final int COUNT_LIMIT = 1000;
 
     public Main() throws IOException {
         fxGUI = new FXController();

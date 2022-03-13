@@ -2,11 +2,16 @@ package ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.BorderPane;
 import model.Machine;
+
+import java.io.IOException;
 
 /**
  *
@@ -35,18 +40,24 @@ public class FXController {
     @FXML
     private RadioButton rbMoore;
 
+    @FXML
+    private BorderPane bpMain;
+
     private Machine mc;
+    private FXMealy xMealy;
 
     public FXController(){
         mc = new Machine();
+        xMealy = new FXMealy(mc, this);
     }
 
 
     @FXML
-    public void onNewMachine(ActionEvent event) {
+    public void onNewMachine(ActionEvent event) throws IOException {
         if(isNotEmptyProperties()) {
             if (parseNumState(txtNumEstados.getText())) {
                 addProperties();
+                showMealy();
             }
         } else {
             newAlert(0, "Llena todos los campos");
@@ -90,5 +101,14 @@ public class FXController {
         alert.setTitle("Alert");
         alert.setContentText(message);
         alert.show();
+    }
+
+    public void showMealy() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/MealyMachine.fxml"));
+        fxmlLoader.setController(xMealy);
+        Parent root = fxmlLoader.load();
+        bpMain.getChildren().clear();
+        bpMain.getChildren().setAll(root);
+        xMealy.initialize();
     }
 }

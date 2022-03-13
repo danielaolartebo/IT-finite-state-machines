@@ -10,37 +10,37 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="977.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="bpMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <Pane prefHeight="637.0" prefWidth="930.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
-            <AnchorPane layoutX="3.0" layoutY="4.0" prefHeight="434.0" prefWidth="969.0" style="-fx-background-color: white;">
-                <Label layoutX="328.0" layoutY="25.0" prefHeight="50.0" prefWidth="315.0" text="MAQUINAS DE ESTADO FINITO" textOverrun="CLIP" wrapText="true">
+        <Pane prefHeight="531.0" prefWidth="831.0" BorderPane.alignment="CENTER">
+            <AnchorPane layoutX="14.0" prefHeight="531.0" prefWidth="881.0" style="-fx-background-color: white;">
+                <Label layoutX="283.0" layoutY="20.0" prefHeight="50.0" prefWidth="315.0" text="MAQUINAS DE ESTADO FINITO" textOverrun="CLIP" wrapText="true">
                     <font>
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <TextField id="txt_States" fx:id="txtNumEstados" alignment="CENTER" layoutX="421.0" layoutY="119.0" prefHeight="26.0" prefWidth="127.0" promptText="Solo numeros" />
-                <Label layoutX="416.0" layoutY="90.0" prefHeight="21.0" prefWidth="138.0" text="Numero de Estados">
+                <TextField id="txt_States" fx:id="txtNumEstados" alignment="CENTER" layoutX="377.0" layoutY="111.0" prefHeight="26.0" prefWidth="127.0" promptText="Solo numeros" />
+                <Label layoutX="370.0" layoutY="90.0" prefHeight="21.0" prefWidth="138.0" text="Numero de Estados">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <TextField id="txt_alphabet" fx:id="txtInputAlfabeto" alignment="CENTER" layoutX="364.0" layoutY="186.0" prefHeight="31.0" prefWidth="241.0" promptText="Separado por &quot; &quot; (Espacios)" />
-                <Label layoutX="419.0" layoutY="157.0" text="Alfabeto de Entrada">
+                <TextField id="txt_alphabet" fx:id="txtInputAlfabeto" alignment="CENTER" layoutX="320.0" layoutY="183.0" prefHeight="31.0" prefWidth="241.0" promptText="Separado por &quot; &quot; (Espacios)" />
+                <Label layoutX="373.0" layoutY="154.0" text="Alfabeto de Entrada">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Label layoutX="425.0" layoutY="292.0" text="Tipo de Automata" />
-                <Button layoutX="426.0" layoutY="375.0" mnemonicParsing="false" onAction="#onNewMachine" text="Crear Maquina" />
-                <RadioButton fx:id="rbMeely" layoutX="405.0" layoutY="337.0" mnemonicParsing="false" text="Meely">
+                <Label layoutX="381.0" layoutY="375.0" text="Tipo de Automata" />
+                <Button layoutX="382.0" layoutY="440.0" mnemonicParsing="false" onAction="#onNewMachine" text="Crear Maquina" />
+                <RadioButton fx:id="rbMeely" layoutX="370.0" layoutY="407.0" mnemonicParsing="false" text="Meely">
                     <toggleGroup>
                         <ToggleGroup fx:id="tgTypeMachine" />
                     </toggleGroup>
                 </RadioButton>
-                <RadioButton fx:id="rbMoore" layoutX="493.0" layoutY="337.0" mnemonicParsing="false" text="Moore" toggleGroup="$tgTypeMachine" />
-            <Label layoutX="425.0" layoutY="227.0" text="Alfabeto de Salida" />
-            <TextField fx:id="txtOutputAlfabeto" alignment="CENTER" layoutX="368.0" layoutY="255.0" prefHeight="31.0" prefWidth="235.0" promptText="Separado por &quot; &quot; (Espacios)" />
+                <RadioButton fx:id="rbMoore" layoutX="456.0" layoutY="407.0" mnemonicParsing="false" text="Moore" toggleGroup="$tgTypeMachine" />
+            <Label layoutX="380.0" layoutY="231.0" text="Alfabeto de Salida" />
+            <TextField fx:id="txtOutputAlfabeto" alignment="CENTER" layoutX="324.0" layoutY="266.0" prefHeight="31.0" prefWidth="235.0" promptText="Separado por &quot; &quot; (Espacios)" />
             </AnchorPane>
         </Pane>
     </top>

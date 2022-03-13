@@ -1,5 +1,7 @@
 package model;
 
+import model.Mealy.MealyMachine;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 
