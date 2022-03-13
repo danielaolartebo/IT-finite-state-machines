@@ -3,6 +3,8 @@ package model;
 import model.Mealy.MealyMachine;
 import model.Mealy.StateMealy;
 import model.Mealy.TransitionMealy;
+
+import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -58,7 +60,7 @@ public class Machine {
         array.addAll(hs);
     }
 
-    public void addStatesMealyM(){
+    public void addStatesMealyMachine(){
         for(int i=0; i<properties.getStates().size(); i++){
             StateMealy state = new StateMealy(properties.getStates().get(i));
             mealymc.getStates().add(state);
@@ -77,5 +79,67 @@ public class Machine {
             }
         }
         return null;
+    }
+
+    public void deleteNoConexoMealy(){
+        changeConnexionInitialState();
+        changeAllconexxion();
+        deleteInStateMealy();
+
+    }
+
+    public void changeConnexionInitialState(){
+        mealymc.getStates().get(0).setConexo(true);
+
+    }
+
+    public void searchingStateFinal(StateMealy stateInitial){
+        if(stateInitial.isConexo()){
+            for(int i = 0; i<mealymc.getTransitions().size(); i++){
+                if(mealymc.getTransitions().get(i).getInitialState().getState().equals(stateInitial.getState())){
+                    StateMealy stateFinal = mealymc.getTransitions().get(i).getFinalState();
+                    changeConnexion(stateFinal);
+                }
+            }
+        }
+    }
+
+    public void changeConnexion(StateMealy stateFinal){
+        for (int i = 0; i<mealymc.getStates().size(); i++){
+            if(mealymc.getStates().get(i).getState().equals(stateFinal.getState())){
+                mealymc.getStates().get(i).setConexo(true);
+            }
+        }
+    }
+
+    public void changeAllconexxion(){
+        for(int i = 0; i<mealymc.getStates().size(); i++){
+            searchingStateFinal(mealymc.getStates().get(i));
+        }
+    }
+
+    public void deleteInStateMealy(){
+        ArrayList<Integer> index = new ArrayList<>();
+        for (int i = 0; i<mealymc.getStates().size(); i++){
+            if(!mealymc.getStates().get(i).isConexo()){
+                index.add(i);
+            }
+        }
+        for (int deleted : index) {
+            deleteInTranstitionMealy(mealymc.getStates().get(deleted));
+            mealymc.getStates().remove(deleted);
+        }
+    }
+
+    public void deleteInTranstitionMealy(StateMealy stateDeleted){
+        ArrayList<Integer> index = new ArrayList<>();
+        for (int i = 0; i<mealymc.getTransitions().size(); i++){
+            if(mealymc.getTransitions().get(i).getInitialState().getState().equals(stateDeleted.getState())){
+                index.add(i);
+            }
+        }
+        for (int deleted : index) {
+            mealymc.getTransitions().remove(deleted);
+        }
     }
 }

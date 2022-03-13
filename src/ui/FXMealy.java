@@ -8,10 +8,7 @@ import model.Machine;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import model.Mealy.MealyMachine;
 import model.Mealy.StateMealy;
-
-import java.util.Observable;
 
 
 public class FXMealy {
@@ -45,7 +42,6 @@ public class FXMealy {
     public void initialize(){
         fillCbRequest();
         fillCbFinalState();
-        addStateMealy();
     }
 
     private void fillCbRequest(){
@@ -60,9 +56,8 @@ public class FXMealy {
         cbFinalState.setItems(obs);
     }
 
-
-    private void addStateMealy(){
-        mc.addStatesMealyM();
+    public void addStatesMealyM(){
+        mc.addStatesMealyMachine();
     }
 
     private void addTransitionMealy(){
@@ -95,6 +90,8 @@ public class FXMealy {
                 lblInitialState.setText(mc.getProperties().getStates().get(stateActual));
             } else {
                 btnAddTransition.setDisable(true);
+                cbFinalState.setDisable(true);
+                cbRequest.setDisable(true);
             }
         }
     }
@@ -106,13 +103,25 @@ public class FXMealy {
 
     @FXML
     public void onAddTransition(ActionEvent event) {
-        newStatesandEstimulos();
-        addTransitionMealy();
+        if(cbFinalState.getValue() != null && cbRequest.getValue() != null){
+            addTransitionMealy();
+            newStatesandEstimulos();
+            cbRequest.setValue(null);
+            cbFinalState.setValue(null);
+        } else {
+            fxGUI.newAlert(0, "Seleccione todos los campos");
+        }
     }
 
     @FXML
     public void onAutomataConexo(ActionEvent event) {
-
+        mc.deleteNoConexoMealy();
+        for(int i = 0; i<mc.getMealymc().getStates().size(); i++){
+            System.out.println(mc.getMealymc().getStates().get(i).isConexo());
+        }
+        for (int i = 0; i<mc.getMealymc().getTransitions().size(); i++){
+            System.out.println(mc.getMealymc().getTransitions().get(i).getInitialState().getState());
+        }
     }
 
     @FXML

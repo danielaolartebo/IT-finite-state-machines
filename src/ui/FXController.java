@@ -110,5 +110,6 @@ public class FXController {
         bpMain.getChildren().clear();
         bpMain.getChildren().setAll(root);
         xMealy.initialize();
+        xMealy.addStatesMealyM();
     }
 }
