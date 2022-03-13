@@ -1,20 +1,27 @@
 package model;
 
 import model.Mealy.MealyMachine;
-
+import model.Mealy.StateMealy;
+import model.Mealy.TransitionMealy;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Machine {
 
     private Properties properties;
+    private MealyMachine mealymc;
 
     public Machine(){
         properties = new Properties();
+        mealymc = new MealyMachine();
     }
 
     public Properties getProperties(){
         return properties;
+    }
+
+    public MealyMachine getMealymc(){
+        return mealymc;
     }
 
     public void addState(int numStates){
@@ -49,5 +56,26 @@ public class Machine {
         hs.addAll(array);
         array.clear();
         array.addAll(hs);
+    }
+
+    public void addStatesMealyM(){
+        for(int i=0; i<properties.getStates().size(); i++){
+            StateMealy state = new StateMealy(properties.getStates().get(i));
+            mealymc.getStates().add(state);
+        }
+    }
+
+    public void addTransitionMealyM(StateMealy initialState, String estimulo, String request, StateMealy finalState){
+        TransitionMealy newTransition = new TransitionMealy(initialState, estimulo, request, finalState);
+        mealymc.getTransitions().add(newTransition);
+    }
+
+    public StateMealy searchStateMealy(String state){
+        for(int i = 0; i<mealymc.getStates().size(); i++){
+            if(mealymc.getStates().get(i).getState().equals(state)){
+                return mealymc.getStates().get(i);
+            }
+        }
+        return null;
     }
 }

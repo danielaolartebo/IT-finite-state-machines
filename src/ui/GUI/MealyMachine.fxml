@@ -18,7 +18,7 @@
       <Label layoutX="339.0" layoutY="65.0" text="Estimulo" />
       <Label layoutX="479.0" layoutY="65.0" text="Respuesta" />
       <Label layoutX="611.0" layoutY="65.0" text="Estado Final" />
-      <Button layoutX="378.0" layoutY="150.0" mnemonicParsing="false" onAction="#onAddTransition" text="Añadir Transición" />
+      <Button fx:id="btnAddTransition" layoutX="378.0" layoutY="150.0" mnemonicParsing="false" onAction="#onAddTransition" text="Añadir Transición" />
       <Label fx:id="lblInitialState" alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="98.0" prefHeight="36.0" prefWidth="79.0" text="q0">
          <font>
             <Font size="25.0" />
