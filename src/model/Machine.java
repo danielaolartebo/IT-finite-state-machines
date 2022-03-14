@@ -8,7 +8,6 @@ import model.Moore.MooreMachine;
 import model.Moore.StateMoore;
 import model.Moore.TransitionMoore;
 
-import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -16,13 +15,11 @@ public class Machine {
 
     private Properties properties;
     private MealyMachine mealymc;
-    private PartitionMealy pMealy;
     private MooreMachine mooremc;
 
     public Machine(){
         properties = new Properties();
         mealymc = new MealyMachine();
-        pMealy = new PartitionMealy();
         mooremc = new MooreMachine();
     }
 
@@ -223,4 +220,130 @@ public class Machine {
         }
         return null;
     }
+
+
+    public void deleteNoConexoMoore(){
+        changeConnexionInitialStateMoore();
+        changeAllconexxionMoore();
+        deleteInStateMoore();
+
+    }
+
+    public void changeConnexionInitialStateMoore(){
+        mooremc.getStates().get(0).setConexo(true);
+
+    }
+
+    public void searchingStateFinalMoore(StateMoore stateInitial){
+        if(stateInitial.isConexo()){
+            for(int i = 0; i<mooremc.getTransitions().size(); i++){
+                if(mooremc.getTransitions().get(i).getInitialState().getState().equals(stateInitial.getState())){
+                    StateMoore stateFinal = mooremc.getTransitions().get(i).getFinalState();
+                    changeConnexionMoore(stateFinal);
+                }
+            }
+        }
+    }
+
+    public void changeConnexionMoore(StateMoore stateFinal){
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            if(mooremc.getStates().get(i).getState().equals(stateFinal.getState())){
+                mooremc.getStates().get(i).setConexo(true);
+            }
+        }
+    }
+
+    public void changeAllconexxionMoore(){
+        for(int i = 0; i<mooremc.getStates().size(); i++){
+            searchingStateFinalMoore(mooremc.getStates().get(i));
+        }
+    }
+
+    public void deleteInStateMoore(){
+        ArrayList<Integer> index = new ArrayList<>();
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            if(!mooremc.getStates().get(i).isConexo()){
+                index.add(i);
+            }
+        }
+        for (int deleted : index) {
+            deleteInTranstitionMoore(mooremc.getStates().get(deleted));
+            mooremc.getStates().remove(deleted);
+        }
+    }
+
+    public void deleteInTranstitionMoore(StateMoore stateDeleted){
+        ArrayList<Integer> indexS = new ArrayList<>();
+        for (int i = 0; i<mooremc.getTransitions().size(); i++){
+            if(mooremc.getTransitions().get(i).getInitialState().getState().equals(stateDeleted.getState())){
+                indexS.add(i);
+            }
+        }
+        for (int deleted : indexS) {
+            mooremc.getTransitions().remove(deleted);
+        }
+    }
+
+    /*
+
+    public void deleteNoConexoMoore(){
+        changeConnexionInitialStateMoore();
+        changeAllconexxionMoore();
+        deleteInStateMoore();
+    }
+
+    private void changeConnexionInitialStateMoore() {
+        mooremc.getStates().get(0).setConexo(true);
+    }
+
+    public void searchingStateFinalMoore(StateMoore stateInitial){
+        if (stateInitial.isConexo()){
+            for (int i = 0; i<mooremc.getTransitions().size(); i++){
+                if(mooremc.getTransitions().get(i).getInitialState().getState().equals(stateInitial.getState())){
+                    StateMoore stateFinal = mooremc.getTransitions().get(i).getFinalState();
+                    changeConexionMoore(stateFinal);
+                }
+            }
+        }
+    }
+
+    public void changeConexionMoore(StateMoore stateFinal){
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            if(mooremc.getStates().get(i).getState().equals(stateFinal.getState())){
+                mooremc.getStates().get(i).setConexo(true);
+            }
+        }
+    }
+
+    private void changeAllconexxionMoore() {
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            searchingStateFinalMoore(mooremc.getStates().get(i));
+        }
+    }
+
+    private void deleteInStateMoore() {
+        ArrayList<Integer> index = new ArrayList<>();
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            if(!mooremc.getStates().get(i).isConexo()){
+                index.add(i);
+            }
+        }
+        for(int deleted : index){
+            deleteInTranstitionMoore(mooremc.getStates().get(deleted));
+            mooremc.getStates().remove(deleted);
+        }
+    }
+
+    private void deleteInTranstitionMoore(StateMoore stateMoore) {
+        ArrayList<Integer> indexMoore = new ArrayList<>();
+        for (int i = 0; i<mooremc.getTransitions().size(); i++){
+            if(mooremc.getTransitions().get(i).getInitialState().getState().equals(stateMoore.getState())){
+                indexMoore.add(i);
+            }
+        }
+        for(int deleted : indexMoore){
+            mooremc.getTransitions().remove(deleted);
+        }
+    }
+    */
 }

@@ -112,6 +112,13 @@ public class FXMoore {
 
     @FXML
     public void onAutomataConexo(ActionEvent event) {
+        mc.deleteNoConexoMoore();
+        for (int i = 0; i<mc.getMooremc().getStates().size(); i++){
+            System.out.println(mc.getMooremc().getStates().get(i).getState()+ "Estado");
+        }
+        for (int i = 0; i<mc.getMooremc().getTransitions().size(); i++){
+            System.out.println(mc.getMooremc().getTransitions().get(i).getInitialState()+ "Transition");
+        }
     }
 
     @FXML
@@ -173,6 +180,6 @@ public class FXMoore {
         String estimulo = lblEstimulo.getText();
         StateMoore finalS = mc.searchStateMoore(cbFinalState.getValue());
         TransitionMoore tm = new TransitionMoore(initS, estimulo, finalS);
-        mc.getMooremc().getTransitions().add(tm);
+        mc.addTransitionMoore(initS, estimulo, finalS);
     }
 }
