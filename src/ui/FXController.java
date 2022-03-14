@@ -45,19 +45,30 @@ public class FXController {
 
     private Machine mc;
     private FXMealy xMealy;
+    private FXMoore xMoore;
 
     public FXController(){
         mc = new Machine();
         xMealy = new FXMealy(mc, this);
+        xMoore = new FXMoore(mc, this);
     }
 
 
     @FXML
     public void onNewMachine(ActionEvent event) throws IOException {
         if(isNotEmptyProperties()) {
-            if (parseNumState(txtNumEstados.getText())) {
-                addProperties();
-                showMealy();
+            if(rbMoore.isSelected()){
+                if (parseNumState(txtNumEstados.getText())) {
+                    addProperties();
+                    showMoore();
+                }
+            } else if (rbMeely.isSelected()){
+                if (parseNumState(txtNumEstados.getText())) {
+                    addProperties();
+                    showMealy();
+                }
+            } else {
+                newAlert(0, "Selecciona un tipo de maquina");
             }
         } else {
             newAlert(0, "Llena todos los campos");
@@ -111,5 +122,13 @@ public class FXController {
         bpMain.getChildren().setAll(root);
         xMealy.initialize();
         xMealy.addStatesMealyM();
+    }
+
+    public void showMoore() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SetStateMoore.fxml"));
+        fxmlLoader.setController(xMoore);
+        Parent root = fxmlLoader.load();
+        bpMain.getChildren().clear();
+        bpMain.getChildren().setAll(root);
     }
 }

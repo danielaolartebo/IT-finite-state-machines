@@ -1,6 +1,7 @@
 package model;
 
 import model.Mealy.MealyMachine;
+import model.Mealy.PartitionMealy;
 import model.Mealy.StateMealy;
 import model.Mealy.TransitionMealy;
 
@@ -12,10 +13,12 @@ public class Machine {
 
     private Properties properties;
     private MealyMachine mealymc;
+    private PartitionMealy pMealy;
 
     public Machine(){
         properties = new Properties();
         mealymc = new MealyMachine();
+        pMealy = new PartitionMealy();
     }
 
     public Properties getProperties(){
@@ -142,4 +145,55 @@ public class Machine {
             mealymc.getTransitions().remove(deleted);
         }
     }
+    /*
+
+    public void addingFirstP() {
+        ArrayList<StateMealy> P11 = new ArrayList<>();
+        pMealy.getHsPartition().add(P11);
+        pMealy.getHsPartition().get(0).add(mealymc.getStates().get(0));
+        for(int i = 0; i<mealymc.getStates().size(); i++){
+            if(i != 0){
+                if(comparingTransition(mealymc.getStates().get(0), mealymc.getStates().get(i))){
+                    pMealy.getHsPartition().get(0).add(mealymc.getStates().get(i));
+                }
+            }
+        }
+        System.out.println(pMealy.getHsPartition().get(0).size()+"Mird");
+        for(int i = 0; i<pMealy.getHsPartition().size(); i++){
+            for (int j = 0; j<pMealy.getHsPartition().get(i).size(); j++){
+                System.out.println(pMealy.getHsPartition().get(i).get(j).getState()+"Pucha");
+            }
+        }
+    }
+
+    public boolean comparingTransition(StateMealy init, StateMealy fin){
+        ArrayList<TransitionMealy> s1 = new ArrayList<>();
+        ArrayList<TransitionMealy> s2 = new ArrayList<>();
+        for (int i = 0; i<mealymc.getTransitions().size(); i++){
+            if(getMealymc().getTransitions().get(i).getInitialState().getState().equals(init.getState())){
+                s1.add(mealymc.getTransitions().get(i));
+            }
+            if(getMealymc().getTransitions().get(i).getInitialState().getState().equals(fin.getState())){
+                s2.add(mealymc.getTransitions().get(i));
+            }
+        }
+        return isEquals(s1, s2);
+    }
+
+    public boolean isEquals(ArrayList<TransitionMealy> s1, ArrayList<TransitionMealy> s2){
+        int countTotal = s1.size();
+        int count = 0;
+        for (int i = 0; i<s1.size(); i++){
+            if(s1.get(i).getEstimulo().equals(s2.get(i).getEstimulo())){
+                if(s1.get(i).getRequest().equals(s2.get(i).getRequest())){
+                    count++;
+                }
+            }
+        }
+        return count == countTotal;
+    }
+
+     */
+
+
 }

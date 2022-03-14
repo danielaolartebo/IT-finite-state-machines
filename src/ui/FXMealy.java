@@ -28,6 +28,9 @@ public class FXMealy {
     @FXML
     private Button btnAddTransition;
 
+    @FXML
+    private Button btnPartition;
+
     private FXController fxGUI;
     private Machine mc;
     int estimuloActual = 0;
@@ -42,6 +45,7 @@ public class FXMealy {
     public void initialize(){
         fillCbRequest();
         fillCbFinalState();
+        lblEstimulo.setText(mc.getProperties().getInputAlphabet().get(0));
     }
 
     private void fillCbRequest(){
@@ -119,13 +123,11 @@ public class FXMealy {
         for(int i = 0; i<mc.getMealymc().getStates().size(); i++){
             System.out.println(mc.getMealymc().getStates().get(i).isConexo());
         }
-        for (int i = 0; i<mc.getMealymc().getTransitions().size(); i++){
-            System.out.println(mc.getMealymc().getTransitions().get(i).getInitialState().getState());
-        }
+        btnPartition.setDisable(false);
     }
 
     @FXML
     public void onPartition(ActionEvent event) {
-
+        //mc.addingFirstP();
     }
 }

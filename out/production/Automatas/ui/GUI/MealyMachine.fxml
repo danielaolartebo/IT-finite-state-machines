@@ -32,6 +32,6 @@
       <ComboBox fx:id="cbRequest" layoutX="482.0" layoutY="101.0" prefHeight="31.0" prefWidth="67.0" />
       <ComboBox fx:id="cbFinalState" layoutX="608.0" layoutY="101.0" prefHeight="31.0" prefWidth="86.0" />
       <Button layoutX="376.0" layoutY="387.0" mnemonicParsing="false" onAction="#onAutomataConexo" text="Automata Conexo" />
-      <Button layoutX="365.0" layoutY="428.0" mnemonicParsing="false" onAction="#onPartition" text="Particionar Automata" />
+      <Button fx:id="btnPartition" disable="true" layoutX="365.0" layoutY="428.0" mnemonicParsing="false" onAction="#onPartition" text="Particionar Automata" />
    </children>
 </Pane>
