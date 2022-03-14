@@ -3,12 +3,14 @@ package ui;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Machine;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import model.Mealy.StateMealy;
+import model.Mealy.TransitionMealy;
+
+import java.util.List;
 
 
 public class FXMealy {
@@ -30,6 +32,23 @@ public class FXMealy {
 
     @FXML
     private Button btnPartition;
+
+
+    @FXML
+    private TableView<TransitionMealy> tblMealyTransition;
+
+    @FXML
+    private TableColumn<TransitionMealy, String> tblcInitialState;
+
+    @FXML
+    private TableColumn<TransitionMealy, String> tblcEstimulo;
+
+    @FXML
+    private TableColumn<TransitionMealy, String> tblcRequest;
+
+    @FXML
+    private TableColumn<TransitionMealy, String> tblcStateFinal;
+
 
     private FXController fxGUI;
     private Machine mc;
@@ -112,6 +131,7 @@ public class FXMealy {
             newStatesandEstimulos();
             cbRequest.setValue(null);
             cbFinalState.setValue(null);
+            onTableTransition();
         } else {
             fxGUI.newAlert(0, "Seleccione todos los campos");
         }
@@ -123,11 +143,26 @@ public class FXMealy {
         for(int i = 0; i<mc.getMealymc().getStates().size(); i++){
             System.out.println(mc.getMealymc().getStates().get(i).isConexo());
         }
+        onTableTransition();
         btnPartition.setDisable(false);
     }
 
     @FXML
     public void onPartition(ActionEvent event) {
-        //mc.addingFirstP();
+        fxGUI.newAlert(0, "Sorry, nos rendimos en esta parte, please PIEDAD");
+    }
+
+    public void onTableTransition(){
+        List<TransitionMealy> transitions = mc.getMealymc().getTransitions();
+        ObservableList<TransitionMealy> newTableTransitions;
+        newTableTransitions = FXCollections.observableArrayList(transitions);
+
+        tblMealyTransition.setItems(newTableTransitions);
+        tblcEstimulo.setCellValueFactory(new PropertyValueFactory<>("estimulo"));
+        tblcRequest.setCellValueFactory(new PropertyValueFactory<>("request"));
+        tblcStateFinal.setCellValueFactory(new PropertyValueFactory<>("nameF"));
+        tblcInitialState.setCellValueFactory(new PropertyValueFactory<>("nameI"));
+
+        tblMealyTransition.refresh();
     }
 }

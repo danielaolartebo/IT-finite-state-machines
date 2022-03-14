@@ -35,4 +35,16 @@ public class TransitionMoore {
     public void setFinalState(StateMoore finalState) {
         this.finalState = finalState;
     }
+
+    public String getRequestMooreState(){
+        return initialState.getRequest();
+    }
+
+    public String getNameI(){
+        return initialState.getState();
+    }
+
+    public String getNameF(){
+        return finalState.getState();
+    }
 }

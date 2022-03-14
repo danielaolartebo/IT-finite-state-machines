@@ -45,4 +45,12 @@ public class TransitionMealy {
     public void setFinalState(StateMealy finalState) {
         this.finalState = finalState;
     }
+
+    public String getNameI(){
+        return initialState.getState();
+    }
+
+    public String getNameF(){
+        return finalState.getState();
+    }
 }

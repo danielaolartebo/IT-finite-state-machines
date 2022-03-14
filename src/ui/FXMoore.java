@@ -6,15 +6,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import model.Machine;
+import model.Moore.MooreMachine;
 import model.Moore.StateMoore;
 import model.Moore.TransitionMoore;
 
 import java.io.IOException;
+import java.util.List;
 
 public class FXMoore {
 
@@ -47,6 +48,24 @@ public class FXMoore {
 
     @FXML
     private Button btnAddStateR;
+
+    @FXML
+    private TableView<TransitionMoore> tblMooreTransition;
+
+    @FXML
+    private TableColumn<TransitionMoore, String> tblcStateInitial;
+
+    @FXML
+    private TableColumn<TransitionMoore, String> tblcRequesStateI;
+
+    @FXML
+    private TableColumn<TransitionMoore, String> tblcEstimulo;
+
+    @FXML
+    private TableColumn<TransitionMoore, String> tblcStateFinal;
+
+    @FXML
+    private Button btnConexAuto;
 
     private FXController fxGUI;
     private Machine mc;
@@ -105,6 +124,7 @@ public class FXMoore {
             addTransitionMoore();
             newSandE();
             cbFinalState.setValue(null);
+            onTableTransition();
         } else {
             fxGUI.newAlert(0, "Por favor selecciona un estado final");
         }
@@ -113,17 +133,15 @@ public class FXMoore {
     @FXML
     public void onAutomataConexo(ActionEvent event) {
         mc.deleteNoConexoMoore();
-        for (int i = 0; i<mc.getMooremc().getStates().size(); i++){
-            System.out.println(mc.getMooremc().getStates().get(i).getState()+ "Estado");
-        }
-        for (int i = 0; i<mc.getMooremc().getTransitions().size(); i++){
-            System.out.println(mc.getMooremc().getTransitions().get(i).getInitialState()+ "Transition");
-        }
+        onTableTransition();
+        btnConexAuto.setDisable(true);
+        btnPartition.setDisable(false);
+
     }
 
     @FXML
     public void onPartition(ActionEvent event) {
-
+        fxGUI.newAlert(0, "Nos rendimos, por favor PIEDAD");
     }
 
 
@@ -179,7 +197,20 @@ public class FXMoore {
         StateMoore initS = mc.searchStateMoore(lblInitialState.getText());
         String estimulo = lblEstimulo.getText();
         StateMoore finalS = mc.searchStateMoore(cbFinalState.getValue());
-        TransitionMoore tm = new TransitionMoore(initS, estimulo, finalS);
         mc.addTransitionMoore(initS, estimulo, finalS);
+    }
+
+    public void onTableTransition(){
+        List<TransitionMoore> transitions = mc.getMooremc().getTransitions();
+        ObservableList<TransitionMoore> newTableTransitions;
+        newTableTransitions = FXCollections.observableArrayList(transitions);
+
+        tblMooreTransition.setItems(newTableTransitions);
+        tblcStateInitial.setCellValueFactory(new PropertyValueFactory<>("nameI"));
+        tblcEstimulo.setCellValueFactory(new PropertyValueFactory<>("estimulo"));
+        tblcStateFinal.setCellValueFactory(new PropertyValueFactory<>("nameF"));
+        tblcRequesStateI.setCellValueFactory(new PropertyValueFactory<>("requestMooreState"));
+
+        tblMooreTransition.refresh();
     }
 }
