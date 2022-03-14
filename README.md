@@ -1,6 +1,6 @@
  # ***Finite state machine***
 
-*This app implements a finate-state machine (either a Mealy or Moore) that generates its least equivalent automata.*
+*This app implements a finate-state machine (either Mealy or Moore) that generates its least equivalent automata and conexo automata.*
 
 ## ***Built With*** 🛠️
 
@@ -19,7 +19,7 @@
 
 ## ***Local Deploy*** 📦
 
-*To run the web app you should follow these steps:*
+*To run the app you should follow these steps:*
 
 1️⃣ *Clone or download the repository*
 
