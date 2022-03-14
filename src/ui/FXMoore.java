@@ -141,6 +141,7 @@ public class FXMoore {
 
     @FXML
     public void onPartition(ActionEvent event) {
+        //smc.showTeset();
         fxGUI.newAlert(0, "Nos rendimos, por favor PIEDAD");
     }
 
