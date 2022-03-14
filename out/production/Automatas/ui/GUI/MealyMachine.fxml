@@ -5,42 +5,52 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label alignment="CENTER" layoutX="328.0" layoutY="22.0" prefHeight="30.0" prefWidth="235.0" text="Creación del Automata">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="191.0" layoutY="65.0" text="Estado Inicial" />
-      <Label layoutX="339.0" layoutY="65.0" text="Estimulo" />
-      <Label layoutX="479.0" layoutY="65.0" text="Respuesta" />
-      <Label layoutX="611.0" layoutY="65.0" text="Estado Final" />
-      <Button fx:id="btnAddTransition" layoutX="378.0" layoutY="150.0" mnemonicParsing="false" onAction="#onAddTransition" text="Añadir Transición" />
-      <Label fx:id="lblInitialState" alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="98.0" prefHeight="36.0" prefWidth="79.0" text="q0">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblEstimulo" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="98.0" prefHeight="36.0" prefWidth="56.0" text="A">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <ComboBox fx:id="cbRequest" layoutX="482.0" layoutY="101.0" prefHeight="31.0" prefWidth="67.0" />
-      <ComboBox fx:id="cbFinalState" layoutX="608.0" layoutY="101.0" prefHeight="31.0" prefWidth="86.0" />
-      <Button layoutX="376.0" layoutY="428.0" mnemonicParsing="false" onAction="#onAutomataConexo" text="Automata Conexo" />
-      <Button fx:id="btnPartition" disable="true" layoutX="365.0" layoutY="471.0" mnemonicParsing="false" onAction="#onPartition" text="Particionar Automata" />
-      <TableView fx:id="tblMealyTransition" layoutX="48.0" layoutY="205.0" prefHeight="200.0" prefWidth="810.0">
-         <columns>
-            <TableColumn fx:id="tblcInitialState" prefWidth="202.0" text="Estado Inicial" />
-            <TableColumn fx:id="tblcEstimulo" prefWidth="202.0" text="Estimulo" />
-            <TableColumn fx:id="tblcRequest" prefWidth="202.0" text="Respuesta" />
-            <TableColumn fx:id="tblcStateFinal" prefWidth="202.0" text="Estado final" />
-         </columns>
-      </TableView>
-   </children>
-</Pane>
+
+<BorderPane prefHeight="573.0" prefWidth="887.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="863.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="328.0" layoutY="22.0" prefHeight="30.0" prefWidth="235.0" text="Creación del Automata">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="191.0" layoutY="65.0" text="Estado Inicial" />
+            <Label layoutX="339.0" layoutY="65.0" text="Estimulo" />
+            <Label layoutX="479.0" layoutY="65.0" text="Respuesta" />
+            <Label layoutX="611.0" layoutY="65.0" text="Estado Final" />
+            <Button fx:id="btnAddTransition" layoutX="378.0" layoutY="150.0" mnemonicParsing="false" onAction="#onAddTransition" text="Añadir Transición" />
+            <Label fx:id="lblInitialState" alignment="CENTER" contentDisplay="CENTER" layoutX="195.0" layoutY="98.0" prefHeight="36.0" prefWidth="79.0" text="q0">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEstimulo" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="98.0" prefHeight="36.0" prefWidth="56.0" text="A">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="cbRequest" layoutX="482.0" layoutY="101.0" prefHeight="31.0" prefWidth="67.0" />
+            <ComboBox fx:id="cbFinalState" layoutX="608.0" layoutY="101.0" prefHeight="31.0" prefWidth="86.0" />
+            <Button layoutX="376.0" layoutY="428.0" mnemonicParsing="false" onAction="#onAutomataConexo" text="Automata Conexo">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnPartition" disable="true" layoutX="365.0" layoutY="471.0" mnemonicParsing="false" onAction="#onPartition" text="Particionar Automata" />
+            <TableView fx:id="tblMealyTransition" layoutX="27.0" layoutY="205.0" prefHeight="200.0" prefWidth="810.0">
+               <columns>
+                  <TableColumn fx:id="tblcInitialState" prefWidth="202.0" text="Estado Inicial" />
+                  <TableColumn fx:id="tblcEstimulo" prefWidth="202.0" text="Estimulo" />
+                  <TableColumn fx:id="tblcRequest" prefWidth="202.0" text="Respuesta" />
+                  <TableColumn fx:id="tblcStateFinal" prefWidth="202.0" text="Estado final" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>
