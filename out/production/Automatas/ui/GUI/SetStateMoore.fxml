@@ -7,19 +7,20 @@
 <?import javafx.scene.text.Font?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="291.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pStateR" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="269.0" layoutY="27.0" text="Estado">
+      <Label layoutX="414.0" layoutY="91.0" text="Estado">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblState" alignment="CENTER" layoutX="282.0" layoutY="76.0" prefHeight="30.0" prefWidth="37.0" text="q0">
+      <Label fx:id="lblState" alignment="CENTER" layoutX="427.0" layoutY="142.0" prefHeight="30.0" prefWidth="37.0" text="q0">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cbRequestState" layoutX="226.0" layoutY="126.0" prefWidth="150.0" />
-      <Button fx:id="btnAddStateR" layoutX="269.0" layoutY="185.0" mnemonicParsing="false" onAction="#onAddStateR" text="Añadir" />
+      <ComboBox fx:id="cbRequestState" layoutX="370.0" layoutY="193.0" prefWidth="150.0" />
+      <Button fx:id="btnAddStateR" layoutX="414.0" layoutY="266.0" mnemonicParsing="false" onAction="#onAddStateR" text="Añadir" />
+      <Button fx:id="btnNextScreen" disable="true" layoutX="404.0" layoutY="321.0" mnemonicParsing="false" onAction="#onNextScreen" text="Siguiente" />
    </children>
 </Pane>

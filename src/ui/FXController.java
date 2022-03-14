@@ -130,5 +130,6 @@ public class FXController {
         Parent root = fxmlLoader.load();
         bpMain.getChildren().clear();
         bpMain.getChildren().setAll(root);
+        xMoore.fillCbState();
     }
 }

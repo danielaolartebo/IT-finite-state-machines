@@ -4,6 +4,9 @@ import model.Mealy.MealyMachine;
 import model.Mealy.PartitionMealy;
 import model.Mealy.StateMealy;
 import model.Mealy.TransitionMealy;
+import model.Moore.MooreMachine;
+import model.Moore.StateMoore;
+import model.Moore.TransitionMoore;
 
 import javax.swing.plaf.nimbus.State;
 import java.util.ArrayList;
@@ -14,11 +17,13 @@ public class Machine {
     private Properties properties;
     private MealyMachine mealymc;
     private PartitionMealy pMealy;
+    private MooreMachine mooremc;
 
     public Machine(){
         properties = new Properties();
         mealymc = new MealyMachine();
         pMealy = new PartitionMealy();
+        mooremc = new MooreMachine();
     }
 
     public Properties getProperties(){
@@ -27,6 +32,10 @@ public class Machine {
 
     public MealyMachine getMealymc(){
         return mealymc;
+    }
+
+    public MooreMachine getMooremc(){
+        return mooremc;
     }
 
     public void addState(int numStates){
@@ -196,4 +205,22 @@ public class Machine {
      */
 
 
+    public void addStateMoore(String state, String request){
+        StateMoore newState = new StateMoore(state, request);
+        mooremc.getStates().add(newState);
+    }
+
+    public void addTransitionMoore(StateMoore initial, String estimulo, StateMoore finalS){
+        TransitionMoore newT = new TransitionMoore(initial, estimulo, finalS);
+        mooremc.getTransitions().add(newT);
+    }
+
+    public StateMoore searchStateMoore(String state){
+        for (int i = 0; i<mooremc.getStates().size(); i++){
+            if(mooremc.getStates().get(i).getState().equals(state)){
+                return mooremc.getStates().get(i);
+            }
+        }
+        return null;
+    }
 }

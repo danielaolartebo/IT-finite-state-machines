@@ -6,10 +6,10 @@ public class StateMoore {
     private boolean conexo;
     private String request;
 
-    public StateMoore(String state){
+    public StateMoore(String state, String request){
         this.state = state;
         conexo = false;
-        request = "";
+        this.request = request;
     }
 
     public String getState() {
