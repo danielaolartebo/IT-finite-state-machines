@@ -1,12 +1,13 @@
  # ***Finite state machine***
 
-*This app implements a finate-state machine (either a Mealy or Moore) that generates its least equivalent automata.*
+*This app implements a finate-state machine (either Mealy or Moore) that generates its least equivalent automata and conexo automata.*
 
 ## ***Built With*** 🛠️
 
 <p align="left">
+  <a href="https://www.oracle.com/co/java//" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/java/java-original.svg" height="60" width = "60"></a>
      <a href="https://www.jetbrains.com/es-es/idea/" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/1024px-IntelliJ_IDEA_Icon.svg.png" height="60" width = "60"></a>
-  <a href="https://openjfx.io/" target="_blank"> <img src="https://w7.pngwing.com/pngs/776/561/png-transparent-javafx-scene-builder-fxml-jar-mobile-app-development-builder-food-user-interface-design-orange-thumbnail.png" height="60" width = "60"></a>
+  <a href="https://www.oracle.com/java/technologies/javase/javafxscenebuilder-info.html" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/f/fe/SceneBuilderLogo.png/220px-SceneBuilderLogo.png" height="60" width = "60"></a>
 </p>
 
 ## ***Versioned*** 📌
@@ -18,7 +19,7 @@
 
 ## ***Local Deploy*** 📦
 
-*To run the web app you should follow these steps:*
+*To run the app you should follow these steps:*
 
 1️⃣ *Clone or download the repository*
 
