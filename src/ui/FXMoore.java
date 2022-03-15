@@ -17,6 +17,13 @@ import model.Moore.TransitionMoore;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
+
 public class FXMoore {
 
     @FXML
@@ -67,21 +74,33 @@ public class FXMoore {
     @FXML
     private Button btnConexAuto;
 
+    //Atributes
+
     private FXController fxGUI;
     private Machine mc;
     private int setStateActual = 0;
     int estimuloActual = 0;
     int stateActual = 0;
 
+    //Constructor
+
     public FXMoore(Machine mc, FXController fxGUI){
         this.mc = mc;
         this.fxGUI = fxGUI;
     }
 
+    /**
+     * Initialize JavaFX method
+     */
+
     public void initalize(){
         fillCbState();
         lblState.setText(mc.getProperties().getStates().get(0));
     }
+
+    /**
+     * Fills Cb state
+     */
 
     public void fillCbState(){
         ObservableList<String> obs;
@@ -89,11 +108,19 @@ public class FXMoore {
         cbRequestState.setItems(obs);
     }
 
+    /**
+     * Fills Cb final state
+     */
+
     public void fillCbFinalState(){
         ObservableList<String> obs;
         obs = FXCollections.observableArrayList(mc.getProperties().getStates());
         cbFinalState.setItems(obs);
     }
+
+    /**
+     * Adds set state
+     */
 
     public void addSetState() throws IOException {
         int countState = mc.getProperties().getStates().size();
@@ -109,14 +136,21 @@ public class FXMoore {
         }
     }
 
+    /**
+     * Shows moore screen
+     */
+
     public void showScreenMoore() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/MooreMachine.fxml"));
         fxmlLoader.setController(this);
         Parent root = fxmlLoader.load();
         pStateR.getChildren().clear();
         pStateR.getChildren().setAll(root);
-
     }
+
+    /**
+     *Adds transition
+     */
 
     @FXML
     public void onAddTransition(ActionEvent event) {
@@ -130,14 +164,21 @@ public class FXMoore {
         }
     }
 
+    /**
+     * Automata conexo method
+     */
+
     @FXML
     public void onAutomataConexo(ActionEvent event) {
         mc.deleteNoConexoMoore();
         onTableTransition();
         btnConexAuto.setDisable(true);
         btnPartition.setDisable(false);
-
     }
+
+    /**
+     * Partition method
+     */
 
     @FXML
     public void onPartition(ActionEvent event) {
@@ -145,6 +186,10 @@ public class FXMoore {
         fxGUI.newAlert(0, "Nos rendimos, por favor PIEDAD");
     }
 
+    /**
+     * Adds states
+     * @param event of JavaFX
+     */
 
     @FXML
     public void onAddStateR(ActionEvent event) throws IOException {
@@ -153,8 +198,12 @@ public class FXMoore {
         } else {
             fxGUI.newAlert(0, "Selecciona una respuesta");
         }
-
     }
+
+    /**
+     * Next screen
+     * @param event of JavaFX
+     */
 
     @FXML
     public void onNextScreen(ActionEvent event) throws IOException {
@@ -162,6 +211,10 @@ public class FXMoore {
         fillCbFinalState();
         lblEstimulo.setText(mc.getProperties().getInputAlphabet().get(0));
     }
+
+    /**
+     * Changes moore estimulo
+     */
 
     public void changeEstimulMoore(){
         int countE = mc.getProperties().getInputAlphabet().size();
@@ -174,6 +227,10 @@ public class FXMoore {
             changeState();
         }
     }
+
+    /**
+     * Changes state
+     */
 
     public void changeState(){
         int countS = mc.getProperties().getStates().size();
@@ -189,10 +246,18 @@ public class FXMoore {
         }
     }
 
+    /**
+     * New sand E
+     */
+
     public void newSandE(){
         estimuloActual++;
         changeEstimulMoore();
     }
+
+    /**
+     * Adds more transition
+     */
 
     public void addTransitionMoore(){
         StateMoore initS = mc.searchStateMoore(lblInitialState.getText());
@@ -200,6 +265,10 @@ public class FXMoore {
         StateMoore finalS = mc.searchStateMoore(cbFinalState.getValue());
         mc.addTransitionMoore(initS, estimulo, finalS);
     }
+
+    /**
+     * On table transition
+     */
 
     public void onTableTransition(){
         List<TransitionMoore> transitions = mc.getMooremc().getTransitions();

@@ -17,11 +17,20 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    //Atributes
+
     FXController fxGUI;
+
+    //Constructor
 
     public Main() throws IOException {
         fxGUI = new FXController();
     }
+
+    /**
+     * Start
+     * @param primaryStage of JavaFX
+     */
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -34,6 +43,10 @@ public class Main extends Application {
         primaryStage.setTitle("Finite State Machine");
         primaryStage.show();
     }
+
+    /**
+     * Main
+     */
 
     public static void main(String[] args) {
         launch(args);

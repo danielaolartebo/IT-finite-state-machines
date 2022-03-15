@@ -1,11 +1,22 @@
 package model.Mealy;
 
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
+
 public class TransitionMealy {
+
+    //Atributes
 
     private StateMealy initialState;
     private String estimulo;
     private String request;
     private StateMealy finalState;
+
+    //Constructor
 
     public TransitionMealy(StateMealy initialState, String estimulo, String request, StateMealy finalState){
         this.initialState = initialState;
@@ -13,6 +24,8 @@ public class TransitionMealy {
         this.request = request;
         this.finalState = finalState;
     }
+
+    //Getters and setters
 
     public StateMealy getInitialState() {
         return initialState;

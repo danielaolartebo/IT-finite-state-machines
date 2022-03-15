@@ -43,9 +43,13 @@ public class FXController {
     @FXML
     private BorderPane bpMain;
 
+    //Atributes
+
     private Machine mc;
     private FXMealy xMealy;
     private FXMoore xMoore;
+
+    //Constructor
 
     public FXController(){
         mc = new Machine();
@@ -53,6 +57,10 @@ public class FXController {
         xMoore = new FXMoore(mc, this);
     }
 
+    /**
+     * Selection of Moore or Mealy machine
+     * @param event
+     */
 
     @FXML
     public void onNewMachine(ActionEvent event) throws IOException {
@@ -75,10 +83,18 @@ public class FXController {
         }
     }
 
+    /**
+     * Checks if property is empty
+     */
+
     public boolean isNotEmptyProperties(){
         return !txtInputAlfabeto.getText().isEmpty() &&
                 !txtOutputAlfabeto.getText().isEmpty() && !txtNumEstados.getText().isEmpty();
     }
+
+    /**
+     * Adds properties
+     */
 
     public void addProperties(){
         mc.addInputAlphabet(txtInputAlfabeto.getText());
@@ -88,6 +104,11 @@ public class FXController {
         System.out.println(mc.getProperties().getStates().toString());
         System.out.println(mc.getProperties().getOutputAlphabet().toString());
     }
+
+    /**
+     * Adds quantity of states
+     * @param states of the machine
+     */
 
     public boolean parseNumState(String states){
         try {
@@ -100,6 +121,12 @@ public class FXController {
             return false;
         }
     }
+
+    /**
+     * Creates alerts
+     * @param type response
+     * @param message given to user
+     */
 
     public void newAlert(int type, String message){
         Alert alert;
@@ -114,6 +141,10 @@ public class FXController {
         alert.show();
     }
 
+    /**
+     * Shows Mealy machine screen
+     */
+
     public void showMealy() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/MealyMachine.fxml"));
         fxmlLoader.setController(xMealy);
@@ -123,6 +154,10 @@ public class FXController {
         xMealy.initialize();
         xMealy.addStatesMealyM();
     }
+
+    /**
+     * Shows Moore machine screen
+     */
 
     public void showMoore() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GUI/SetStateMoore.fxml"));

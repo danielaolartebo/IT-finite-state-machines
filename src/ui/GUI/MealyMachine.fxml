@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane prefHeight="573.0" prefWidth="887.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="531.0" prefWidth="887.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="547.0" prefWidth="863.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="863.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" layoutX="328.0" layoutY="22.0" prefHeight="30.0" prefWidth="235.0" text="Creación del Automata">
                <font>

@@ -9,8 +9,14 @@ import model.Machine;
 import javafx.fxml.FXML;
 import model.Mealy.StateMealy;
 import model.Mealy.TransitionMealy;
-
 import java.util.List;
+
+/**
+ *
+ * @author Daniela Olarte Borja A00368359
+ * @author Gabriel Suarez Baron A00368589
+ *
+ */
 
 
 public class FXMealy {
@@ -33,7 +39,6 @@ public class FXMealy {
     @FXML
     private Button btnPartition;
 
-
     @FXML
     private TableView<TransitionMealy> tblMealyTransition;
 
@@ -49,17 +54,23 @@ public class FXMealy {
     @FXML
     private TableColumn<TransitionMealy, String> tblcStateFinal;
 
+    //Atributes
 
     private FXController fxGUI;
     private Machine mc;
     int estimuloActual = 0;
     int stateActual = 0;
 
+    //Constructor
 
     public FXMealy(Machine mc, FXController fxGUI){
         this.mc = mc;
         this.fxGUI = fxGUI;
     }
+
+    /**
+     * Initialize JavaFX method
+     */
 
     public void initialize(){
         fillCbRequest();
@@ -67,11 +78,19 @@ public class FXMealy {
         lblEstimulo.setText(mc.getProperties().getInputAlphabet().get(0));
     }
 
+    /**
+     * Fills Cb request
+     */
+
     private void fillCbRequest(){
         ObservableList<String> obs;
         obs = FXCollections.observableArrayList(mc.getProperties().getOutputAlphabet());
         cbRequest.setItems(obs);
     }
+
+    /**
+     * Fills cb final state
+     */
 
     private void fillCbFinalState(){
         ObservableList<String> obs;
@@ -79,9 +98,17 @@ public class FXMealy {
         cbFinalState.setItems(obs);
     }
 
+    /**
+     * Adds mealy states
+     */
+
     public void addStatesMealyM(){
         mc.addStatesMealyMachine();
     }
+
+    /**
+     * Adds mealy transition
+     */
 
     private void addTransitionMealy(){
         StateMealy initState = mc.searchStateMealy(lblInitialState.getText());
@@ -91,6 +118,9 @@ public class FXMealy {
         mc.addTransitionMealyM(initState, estimulo, request, finalState);
     }
 
+    /**
+     * Changes estimulo
+     */
 
     public void changeEstimulo(){
         int countEstimulo = mc.getProperties().getInputAlphabet().size();
@@ -103,6 +133,10 @@ public class FXMealy {
             changeState();
         }
     }
+
+    /**
+     * Changes state
+     */
 
     public void changeState(){
         int countState = mc.getProperties().getStates().size();
@@ -119,10 +153,19 @@ public class FXMealy {
         }
     }
 
+    /**
+     * New states and estimulos
+     */
+
     public void newStatesandEstimulos(){
         estimuloActual++;
         changeEstimulo();
     }
+
+    /**
+     * Adds transition
+     * @param event of JavaFX
+     */
 
     @FXML
     public void onAddTransition(ActionEvent event) {
@@ -137,6 +180,11 @@ public class FXMealy {
         }
     }
 
+    /**
+     * Automata conexo
+     * @param event of JavaFX
+     */
+
     @FXML
     public void onAutomataConexo(ActionEvent event) {
         mc.deleteNoConexoMealy();
@@ -147,10 +195,19 @@ public class FXMealy {
         btnPartition.setDisable(false);
     }
 
+    /**
+     * Partitions
+     * @param event of JavaFX
+     */
+
     @FXML
     public void onPartition(ActionEvent event) {
         fxGUI.newAlert(0, "Sorry, nos rendimos en esta parte, please PIEDAD");
     }
+
+    /**
+     * On table transition
+     */
 
     public void onTableTransition(){
         List<TransitionMealy> transitions = mc.getMealymc().getTransitions();
