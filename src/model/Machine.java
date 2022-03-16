@@ -1,14 +1,12 @@
 package model;
 
 import model.Mealy.MealyMachine;
-import model.Mealy.PartitionMealy;
 import model.Mealy.StateMealy;
 import model.Mealy.TransitionMealy;
 import model.Moore.MooreMachine;
 import model.Moore.PartitionMoore;
 import model.Moore.StateMoore;
 import model.Moore.TransitionMoore;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -48,7 +46,7 @@ public class Machine {
     public void addInputAlphabet(String alphabet){
         String[] newAlphabet = alphabet.split(" ");
         for (String s : newAlphabet) {
-            if(!s.equals(" ")){
+            if(!s.equals("")){
                 properties.getInputAlphabet().add(s);
             }
         }
@@ -58,7 +56,7 @@ public class Machine {
     public void addOutputAlphabet(String alphabet){
         String[] newAlphabet = alphabet.split(" ");
         for (String s : newAlphabet) {
-            if(!s.equals(" ")){
+            if(!s.equals("")){
                 properties.getOutputAlphabet().add(s);
             }
         }
@@ -162,7 +160,7 @@ public class Machine {
 
     public void addTransitionMoore(StateMoore initial, String estimulo, StateMoore finalS){
         TransitionMoore newT = new TransitionMoore(initial, estimulo, finalS);
-        mooremc.getTransitions().add(newT);
+            mooremc.getTransitions().add(newT);
     }
 
     public StateMoore searchStateMoore(String state){
@@ -237,11 +235,122 @@ public class Machine {
         }
     }
 
-    public void showTeset(){
-        for (int i = 0; i<mooreP.getMooreP().size(); i++){
-            for (int j = 0; j<mooreP.getMooreP().get(i).size(); j++){
-                System.out.println(mooreP.getMooreP().get(i).get(j).getState());
+    public void partitionMainMoore(){
+        for (int i = 0; i < mooremc.getStates().size(); i++) {
+            if(mooreP.getMooreP().isEmpty()){
+                ArrayList<StateMoore> newPart = new ArrayList<>();
+                newPart.add(mooremc.getStates().get(i));
+                mooreP.getMooreP().add(newPart);
+            } else {
+                boolean out = false;
+                for (int j = 0; j < mooreP.getMooreP().size() && !out; j++) {
+                    if(mooreP.getMooreP().get(j).get(0).getRequest().equals(mooremc.getStates().get(i).getRequest())){
+                        out = true;
+                        mooreP.getMooreP().get(j).add(mooremc.getStates().get(i));
+                    }
+                }
+                if(!out){
+                    ArrayList<StateMoore> newPart = new ArrayList<>();
+                    newPart.add(mooremc.getStates().get(i));
+                    mooreP.getMooreP().add(newPart);
+                }
             }
         }
+    }
+
+    public void addingFinalStatesInStateMoore(){
+        for (int i = 0; i < mooremc.getStates().size(); i++) {
+            for (int j = 0; j < mooremc.getTransitions().size(); j++) {
+                if(mooremc.getStates().get(i).getState().equals(mooremc.getTransitions().get(j).getInitialState().getState())){
+                    mooremc.getStates().get(i).getFinStates().add(
+                            mooremc.getTransitions().get(j).getFinalState()
+                    );
+                }
+            }
+        }
+    }
+
+    public void partitionMooore(){
+        ArrayList<StateMoore> newPart = new ArrayList<>();
+        boolean contain = true;
+        ArrayList<Integer> pos = new ArrayList<>();
+        ArrayList<Integer> actual = new ArrayList<>();
+        for (int i = 0; i < mooreP.getMooreP().size(); i++) {
+            for (int j = 1; j < mooreP.getMooreP().get(i).size(); j++) {
+                for (int k = 0; k < mooreP.getMooreP().get(i).get(j).getFinStates().size() && contain; k++) {
+                    contain = stateTogetherMoore(mooreP.getMooreP().get(i).get(0).getFinStates().get(k),
+                            mooreP.getMooreP().get(i).get(j).getFinStates().get(k));
+                    if(!contain){
+                        newPart.add(mooreP.getMooreP().get(i).get(j));
+                        pos.add(j);
+                        actual.add(i);
+                    }
+                    contain = true;
+                }
+            }
+        }
+        if(!newPart.isEmpty()){
+            mooreP.getMooreP().add(newPart);
+            int numDel = 0;
+            for (int i = 0; i < deleteRepeatinMooreActual(actual).size(); i++) {
+                for (int j = 0; j < deleteRepeatinMoorePos(pos).size(); j++) {
+                    int del = deleteRepeatinMoorePos(pos).get(j);
+                    mooreP.getMooreP().get(deleteRepeatinMooreActual(actual).get(i)).remove(del-numDel);
+                    numDel++;
+                }
+            }
+
+        }
+    }
+
+    public ArrayList<Integer> deleteRepeatinMoorePos(ArrayList<Integer> pos){
+        HashSet<Integer> hs = new HashSet<>();
+        hs.addAll(pos);
+        pos.clear();
+        pos.addAll(hs);
+        return pos;
+    }
+
+    public ArrayList<Integer> deleteRepeatinMooreActual(ArrayList<Integer> actual){
+        HashSet<Integer> hs = new HashSet<>();
+        hs.addAll(actual);
+        actual.clear();
+        actual.addAll(hs);
+        return actual;
+    }
+
+    public boolean stateTogetherMoore(StateMoore s1, StateMoore s2){
+        boolean out = false;
+        for (int i = 0; i < mooreP.getMooreP().size() && !out; i++) {
+            if (mooreP.getMooreP().get(i).contains(s1) && mooreP.getMooreP().get(i).contains(s2)) {
+                out = true;
+            }
+        }
+        return out;
+    }
+
+    public void testDeParticion(){
+        System.out.println("Test final");
+        System.out.println(mooreP.getMooreP().size());
+        for (int i = 0; i < mooreP.getMooreP().size(); i++) {
+            System.out.println("Particion"+(i+1));
+            for (int j = 0; j < mooreP.getMooreP().get(i).size(); j++) {
+                System.out.print(mooreP.getMooreP().get(i).get(j).getState()+"  ");
+            }
+            System.out.println(" ");
+        }
+    }
+
+    public String showAutomataParticionado(){
+        String msg = "{";
+        for (int i = 0; i < mooreP.getMooreP().size(); i++) {
+            msg = msg+"{";
+            for (int j = 0; j < mooreP.getMooreP().get(i).size(); j++) {
+                msg = msg+mooreP.getMooreP().get(i).get(j).getState()+", ";
+            }
+            msg = msg+"}";
+        }
+        msg = msg+"}";
+        return msg;
     }
 }

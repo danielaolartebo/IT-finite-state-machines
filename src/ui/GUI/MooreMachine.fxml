@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="328.0" layoutY="22.0" prefHeight="30.0" prefWidth="235.0" text="Creación del Automata">
          <font>
@@ -30,7 +30,7 @@
          </font>
       </Label>
       <ComboBox fx:id="cbFinalState" layoutX="608.0" layoutY="101.0" prefHeight="31.0" prefWidth="86.0" />
-      <Button fx:id="btnConexAuto" layoutX="376.0" layoutY="424.0" mnemonicParsing="false" onAction="#onAutomataConexo" text="Automata Conexo" />
+      <Button fx:id="btnConexAuto" disable="true" layoutX="376.0" layoutY="424.0" mnemonicParsing="false" onAction="#onAutomataConexo" text="Automata Conexo" />
       <Button fx:id="btnPartition" disable="true" layoutX="365.0" layoutY="464.0" mnemonicParsing="false" onAction="#onPartition" text="Particionar Automata" />
       <TableView fx:id="tblMooreTransition" layoutX="58.0" layoutY="215.0" prefHeight="200.0" prefWidth="810.0">
          <columns>
@@ -40,5 +40,6 @@
             <TableColumn fx:id="tblcStateFinal" prefWidth="202.0" text="Estado final" />
          </columns>
       </TableView>
+      <Label fx:id="lblAutomataParticionado" alignment="CENTER" layoutX="55.0" layoutY="510.0" prefHeight="21.0" prefWidth="810.0" text="Automata particionado (Particionar automata varias veces)" />
    </children>
 </Pane>

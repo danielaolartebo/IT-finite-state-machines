@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import model.Machine;
-import model.Moore.MooreMachine;
 import model.Moore.StateMoore;
 import model.Moore.TransitionMoore;
 
@@ -66,6 +65,9 @@ public class FXMoore {
 
     @FXML
     private Button btnConexAuto;
+
+    @FXML
+    private Label lblAutomataParticionado;
 
     private FXController fxGUI;
     private Machine mc;
@@ -132,17 +134,23 @@ public class FXMoore {
 
     @FXML
     public void onAutomataConexo(ActionEvent event) {
+        System.out.println("Conexo?");
         mc.deleteNoConexoMoore();
         onTableTransition();
         btnConexAuto.setDisable(true);
         btnPartition.setDisable(false);
+        mc.addingFinalStatesInStateMoore();
+        mc.partitionMainMoore();
+        mc.testDeParticion();
+        lblAutomataParticionado.setText(mc.showAutomataParticionado());
 
     }
 
     @FXML
     public void onPartition(ActionEvent event) {
-        //smc.showTeset();
-        fxGUI.newAlert(0, "Nos rendimos, por favor PIEDAD");
+        mc.partitionMooore();
+        mc.testDeParticion();
+        lblAutomataParticionado.setText(mc.showAutomataParticionado());
     }
 
 
@@ -184,6 +192,7 @@ public class FXMoore {
                 lblInitialState.setText(mc.getProperties().getStates().get(stateActual));
             } else {
                 btnAddTransition.setDisable(true);
+                btnConexAuto.setDisable(false);
                 cbFinalState.setDisable(true);
             }
         }
