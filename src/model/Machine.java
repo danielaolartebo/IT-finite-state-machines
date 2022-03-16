@@ -361,6 +361,10 @@ public class Machine {
         }
     }
 
+    /**
+     * Partition method for Moore machine
+     */
+
     public void partitionMainMoore(){
         for (int i = 0; i < mooremc.getStates().size(); i++) {
             if(mooreP.getMooreP().isEmpty()){
@@ -384,6 +388,10 @@ public class Machine {
         }
     }
 
+    /**
+     * Adds final state for Moore machine
+     */
+
     public void addingFinalStatesInStateMoore(){
         for (int i = 0; i < mooremc.getStates().size(); i++) {
             for (int j = 0; j < mooremc.getTransitions().size(); j++) {
@@ -395,6 +403,10 @@ public class Machine {
             }
         }
     }
+
+    /**
+     * Partition continuing method for Moore machine
+     */
 
     public void partitionMooore(){
         ArrayList<StateMoore> newPart = new ArrayList<>();
@@ -429,6 +441,12 @@ public class Machine {
         }
     }
 
+    /**
+     * Deletes repeated sets of Moore machine
+     * @param pos response
+     * @return arraylist of integers
+     */
+
     public ArrayList<Integer> deleteRepeatinMoorePos(ArrayList<Integer> pos){
         HashSet<Integer> hs = new HashSet<>();
         hs.addAll(pos);
@@ -437,6 +455,12 @@ public class Machine {
         return pos;
     }
 
+    /**
+     * Deletes repeated sets of current Moore machine
+     * @param actual response
+     * @return arraylist of integers
+     */
+
     public ArrayList<Integer> deleteRepeatinMooreActual(ArrayList<Integer> actual){
         HashSet<Integer> hs = new HashSet<>();
         hs.addAll(actual);
@@ -444,6 +468,13 @@ public class Machine {
         actual.addAll(hs);
         return actual;
     }
+
+    /**
+     * Combinating terms of Moore machine
+     * @param s1 term
+     * @param s2 term
+     * @return boolean
+     */
 
     public boolean stateTogetherMoore(StateMoore s1, StateMoore s2){
         boolean out = false;
@@ -454,6 +485,10 @@ public class Machine {
         }
         return out;
     }
+
+    /**
+     * Partition test
+     */
 
     public void testDeParticion(){
         System.out.println("Test final");
@@ -466,6 +501,11 @@ public class Machine {
             System.out.println(" ");
         }
     }
+
+    /**
+     * Shows partition on screen
+     * @return message
+     */
 
     public String showAutomataParticionado(){
         String msg = "{";

@@ -219,7 +219,6 @@ public class FXMealy {
         tblcRequest.setCellValueFactory(new PropertyValueFactory<>("request"));
         tblcStateFinal.setCellValueFactory(new PropertyValueFactory<>("nameF"));
         tblcInitialState.setCellValueFactory(new PropertyValueFactory<>("nameI"));
-
         tblMealyTransition.refresh();
     }
 }

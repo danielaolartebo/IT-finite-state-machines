@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import model.Machine;
 import model.Moore.StateMoore;
 import model.Moore.TransitionMoore;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -73,12 +72,10 @@ public class FXMoore {
     @FXML
     private Button btnConexAuto;
 
-<<<<<<< HEAD
     @FXML
     private Label lblAutomataParticionado;
-=======
+
     //Atributes
->>>>>>> d17d3fa3d76717b9c113787ee3775809b90b6df9
 
     private FXController fxGUI;
     private Machine mc;
@@ -179,14 +176,12 @@ public class FXMoore {
         onTableTransition();
         btnConexAuto.setDisable(true);
         btnPartition.setDisable(false);
-<<<<<<< HEAD
+
         mc.addingFinalStatesInStateMoore();
         mc.partitionMainMoore();
         mc.testDeParticion();
         lblAutomataParticionado.setText(mc.showAutomataParticionado());
 
-=======
->>>>>>> d17d3fa3d76717b9c113787ee3775809b90b6df9
     }
 
     /**
